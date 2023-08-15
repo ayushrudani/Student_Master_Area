@@ -1,0 +1,58 @@
+﻿@using System.Data;
+@using Student_Master_Areas.Areas.LOC_State.Models;
+@model Student_Master_Areas.Areas.LOC_State.Models.LOC_StateModel;
+@{
+    string opration = "";
+    if (ViewBag.ID > 0)
+    {
+        opration = "Edit";
+    }
+    else
+    {
+        opration = "Add";
+    }
+}
+
+<div class="row ">
+    <div class="col-lg-8 align-items-center">
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@opration Record</h5>
+
+        <!-- Multi Columns Form -->
+        <form class="row g-3" asp-action="LOC_StateAddEdit" method="post">
+                    @Html.HiddenFor(x => x.StateID)
+            <div class="col-md-12">
+                <label for="inputName5" class="form-label">State Name</label>
+                <input asp-for="StateName"  type="text" class="form-control">
+                <span asp-validation-for = "StateName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                 <label for="inputName5" class="form-label">State Code</label>
+                 <input asp-for="StateCode" type="text" class="form-control">
+                 <span asp-validation-for="StateCode" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                        <label for="inputState" class="form-label">Country</label>
+                        <select asp-for="CountryID" asp-items="@(new SelectList(ViewBag.countryDropDownModel,"CountryID","CountryName").ToList())" id="inputState" class="form-select">
+                            <option>Select State---</option>
+                        </select>
+                        <span asp-validation-for="CountryID" class="text-danger"></span>   
+            </div>
+
+            <div class="text-left">
+                        <button type="submit" class="btn btn-primary">@opration Record</button>
+                        <button asp-action="Cancel" asp-area="LOC_State" asp-controller="LOC_State" class="btn btn-primary">Cancel</button>
+            </div>
+        </form><!-- End Multi Columns Form -->
+    </div>
+</div>
+</div>
+</div>
+
+@*@section Scripts{
+    @{
+        <partial name = "_ValidationScriptsPartial" />
+    }
+}*@

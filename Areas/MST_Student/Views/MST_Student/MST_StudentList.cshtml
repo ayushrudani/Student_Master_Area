@@ -1,0 +1,125 @@
+﻿@using System.Data;
+@using Student_Master_Areas.Areas.MST_Student.Models;
+@model Student_Master_Areas.Areas.MST_Student.Models.MST_StudentModel;
+@if (TempData["message"] != null)
+{
+    if (TempData["message"].ToString().Contains("Successfully"))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle me-1"></i>
+            @TempData["message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+}
+<style>
+    .search-form input {
+        border: 0;
+        font-size: 14px;
+        color: #012970;
+        border: 1px solid rgba(1, 41, 112, 0.2);
+        padding: 7px 38px 7px 8px;
+        border-radius: 3px;
+        transition: 0.3s;
+        width: 100%;
+    }
+
+    .search-form button {
+        border: 0;
+        padding: 0;
+        margin-left: -30px;
+        background: none;
+    }
+</style>
+<div class="row">
+    <div class="row">
+        <div class="search-bar col-md-3 mb-3">
+            <div class="search-form d-flex align-items-center" asp-action="SearchStudentName">
+                <input type="text" name="studentName" placeholder="Student Name" title="Enter search keyword" id="txtSearch">
+                <button type="button" title="Search" fdprocessedid="mgo3f"><i class="bi bi-search"></i></button>
+            </div>
+        </div><!-- End Search Bar -->
+
+        <form class = "col-md-9 row" method="post" asp-action="MST_StudentFilter" asp-area="MST_Student" asp-controller="MST_Student">
+            <div class="col-md-3">
+                <select asp-for="BranchID" asp-items="@(new SelectList(ViewBag.branchDropDownModel,"BranchID","BranchName"))" id="inputState" class="form-select">
+                    <option selected="">Select Branch</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <select asp-for="CityID" asp-items="@(new SelectList(ViewBag.cityDropDownModel,"CityID","CityName"))" id="inputState" class="form-select">
+                    <option selected="">Select City</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 bg-light text-start mb-3 auto" style="display:flex;">
+                <a class="m-auto"><button type="submit" class="btn btn-success align-right">Filtter</button></a>
+                <a asp-action="MST_StudentList" asp-area="MST_Student" asp-controller="MST_Student" class="m-auto"><button type="button" class="btn btn-success align-right">Remove Filtter</button></a>
+                <a class="m-auto" asp-action="MST_StudentAddEdit" asp-area="MST_Student" asp-controller="MST_Student"><button type="button" class="btn btn-success align-right"><i class="bi bi-plus-lg"></i> Add Student</button></a>
+            </div>
+    </form>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Student Table</h5>
+            <!-- Default Table -->
+            @if (ViewBag.Student != "NULL")
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Branch</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (MST_StudentModel data in ViewBag.studentList)
+                        {
+                            <tr>
+                                <th scope="row">@data.StudentID</th>
+                                <td>@data.StudentName</td>
+                                <td>@data.Email</td>
+                                <td>@data.BranchName</td>
+                                <td>@data.CityName</td>
+                                <td>
+                                    <a asp-action="MST_StudentProfile" asp-route-id="@data.StudentID" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-person-lines-fill"></i></a>
+                                    <a asp-action="MST_StudentDelete" asp-route-id="@data.StudentID" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h3>No Record Found</h3>
+            }
+            <!-- End Default Table Example -->
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#txtSearch').keyup(function () {
+                var search = $(this).val();
+                $('table tbody tr').hide();
+                var len = $('table tbody tr:not(.notfound) td:contains("' + search + '")').length;
+                if (len > 0) {
+                    $('table tbody tr:not(.notfound) td:contains("' + search + '")').each(function () {
+                        $(this).closest('tr').show();
+                    });
+                } else {
+                    $('.notfound').show();
+                }
+            });
+        });
+    </script>
+}
