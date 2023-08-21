@@ -105,7 +105,7 @@
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Birth Date</div>
-                                <div class="col-lg-3 col-md-8">@Model.BirthDate</div>
+                                <div class="col-lg-3 col-md-8">@Convert.ToDateTime(Model.BirthDate).ToString("dd-MM-yyyy")</div>
                                 <div class="col-lg-3 col-md-4 label">Age</div>
                                 <div class="col-lg-3 col-md-8">@Model.Age</div>
                             </div>

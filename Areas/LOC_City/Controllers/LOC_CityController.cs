@@ -4,9 +4,12 @@ using System.Data.SqlClient;
 using System.Data;
 using Student_Master_Areas.Areas.LOC_State.Models;
 using Student_Master_Areas.DAL;
+using Student_Master_Areas.BAL;
 
 namespace Student_Master_Areas.Areas.LOC_City.Controllers
 {
+    [CheckAccess]
+    [CheckAdmin]
     [Area("LOC_City")]
     [Route("LOC_City/{controller}/{action}")]
     public class LOC_CityController : Controller

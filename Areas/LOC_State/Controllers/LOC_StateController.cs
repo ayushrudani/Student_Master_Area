@@ -4,9 +4,12 @@ using System.Data;
 using Student_Master_Areas.Areas.LOC_State.Models;
 using Student_Master_Areas.Areas.LOC_Country.Models;
 using Student_Master_Areas.DAL;
+using Student_Master_Areas.BAL;
 
 namespace Student_Master_Areas.Areas.LOC_State.Controllers
 {
+    [CheckAccess]
+    [CheckAdmin]
     [Area("LOC_State")]
     [Route("LOC_State/{controller}/{action}")]
     public class LOC_StateController : Controller
@@ -33,6 +36,7 @@ namespace Student_Master_Areas.Areas.LOC_State.Controllers
             List<LOC_CountryDropDownModel> countryDropDownModelList = new List<LOC_CountryDropDownModel>();
             foreach (DataRow data in dt.Rows)
             {
+              
                 LOC_CountryDropDownModel countryDropDownModel = new LOC_CountryDropDownModel();
                 countryDropDownModel.CountryID = Convert.ToInt32(data["CountryID"]);
                 countryDropDownModel.CountryName = data["CountryName"].ToString();

@@ -4,9 +4,12 @@ using System.Data;
 using Student_Master_Areas.Areas.MST_Branch.Models;
 using Student_Master_Areas.DAL;
 using Student_Master_Areas.Areas.MST_Branch.Models;
+using Student_Master_Areas.BAL;
 
 namespace Student_Master_Areas.Areas.MST_Branch.Controllers
 {
+    [CheckAccess]
+    [CheckAdmin]
     [Area("MST_Branch")]
     [Route("MST_Branch/{controller}/{action}")]
     public class MST_BranchController : Controller

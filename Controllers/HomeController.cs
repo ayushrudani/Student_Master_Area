@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Student_Master_Areas.BAL;
 using Student_Master_Areas.Models;
 using System.Diagnostics;
 
@@ -12,7 +13,7 @@ namespace Student_Master_Areas.Controllers
         {
             _logger = logger;
         }
-
+        [CheckAccess]
         public IActionResult Index()
         {
             return View();
@@ -23,10 +24,5 @@ namespace Student_Master_Areas.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

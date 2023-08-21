@@ -14,7 +14,8 @@ namespace Student_Master_Areas.Areas.LOC_State.Models
 
         public string? CountryName { get; set; }
 
-        [Required(ErrorMessage = "Please Choose Country Name")]
+        [Required]
+        [Range(1,100,ErrorMessage = "Naimish")]
         public int CountryID { get; set; }
 
         public DateOnly Created { get; set; }

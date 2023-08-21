@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PJfYAGVRQa55FTnt2pLZ226Dc4ndd0zqk68z5xvpT6I=",
+  "Hash": "X+Q69Crspq0ibN5059BPxHH76LH7XymmXEucZuq9Iiw=",
   "Source": "Student_Master_Areas",
   "BasePath": "_content/Student_Master_Areas",
   "Mode": "Default",
@@ -440,6 +440,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\slides-3.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\ausu\\source\\repos\\Student_Master_Areas\\wwwroot\\img\\UserImage\\1001.jpg",
+      "SourceId": "Student_Master_Areas",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ausu\\source\\repos\\Student_Master_Areas\\wwwroot\\",
+      "BasePath": "_content/Student_Master_Areas",
+      "RelativePath": "img/UserImage/1001.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\UserImage\\1001.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\ausu\\source\\repos\\Student_Master_Areas\\wwwroot\\img\\UserImage\\745413.png",
+      "SourceId": "Student_Master_Areas",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ausu\\source\\repos\\Student_Master_Areas\\wwwroot\\",
+      "BasePath": "_content/Student_Master_Areas",
+      "RelativePath": "img/UserImage/745413.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\UserImage\\745413.png"
     },
     {
       "Identity": "C:\\Users\\ausu\\source\\repos\\Student_Master_Areas\\wwwroot\\js\\main.js",

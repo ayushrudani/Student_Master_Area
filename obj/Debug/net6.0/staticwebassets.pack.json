@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
+      "Id": "C:\\Users\\ausu\\source\\repos\\Student_Master_Areas\\wwwroot\\img\\UserImage\\1001.jpg",
+      "PackagePath": "staticwebassets\\img\\UserImage\\1001.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ausu\\source\\repos\\Student_Master_Areas\\wwwroot\\img\\UserImage\\745413.png",
+      "PackagePath": "staticwebassets\\img\\UserImage\\745413.png"
+    },
+    {
       "Id": "C:\\Users\\ausu\\source\\repos\\Student_Master_Areas\\wwwroot\\img\\apple-touch-icon.png",
       "PackagePath": "staticwebassets\\img\\apple-touch-icon.png"
     },

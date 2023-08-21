@@ -5,14 +5,16 @@ using Student_Master_Areas.Areas.LOC_City.Models;
 using Student_Master_Areas.Areas.MST_Branch.Models;
 using Student_Master_Areas.DAL;
 using Student_Master_Areas.Areas.MST_Student.Models;
+using Student_Master_Areas.BAL;
 
 namespace Student_Master_Areas.Areas.MST_Student.Controllers
 {
+    [CheckAccess]
+    [CheckAdmin]
     [Area("MST_Student")]
     [Route("MST_Student/{controller}/{action}")]
     public class MST_StudentController : Controller
     {
-        string connectionString = "Data Source = LAPTOP-TAOASQM2\\SQLEXPRESS;Initial Catalog = STUDENTMASTER;Integrated Security = true;";
 
         #region #DateFromater
         public string dateFormate(String input)
@@ -111,7 +113,7 @@ namespace Student_Master_Areas.Areas.MST_Student.Controllers
                     studentModel.Email = data["Email"].ToString();
                     studentModel.MobileNoFather = data["MobileNoFather"].ToString();
                     studentModel.Address = data["Address"].ToString();
-                    studentModel.BirthDate = Convert.ToDateTime(data["BirthDate"]).ToString("yyyy-MM-dd");
+                    studentModel.BirthDate = Convert.ToDateTime(data["BirthDate"]);
                     studentModel.Age = Convert.ToInt32(data["Age"]);
                     studentModel.IsActive = data["IsActive"].ToString();
                     studentModel.Gender = data["Gender"].ToString();
@@ -149,12 +151,13 @@ namespace Student_Master_Areas.Areas.MST_Student.Controllers
                 if(studentModel.StudentID == null)
                 {
                     TempData["message"] = mST_DAL.MST_Student_Insert(studentModel);
+                    return RedirectToAction("MST_StudentList");
                 }
                 else
                 {
-                    TempData["message"] = mST_DAL.MST_Student_Update(studentModel);
+                    mST_DAL.MST_Student_Update(studentModel);
+                    return RedirectToAction("MST_StudentProfile", new { id = studentModel.StudentID });
                 }
-                return RedirectToAction("MST_StudentList");
             }
             else if(studentModel.StudentID == null)
             {
@@ -183,28 +186,20 @@ namespace Student_Master_Areas.Areas.MST_Student.Controllers
         {
             SetBranchDropDownList();
             SetCityDropDownList();
-            SqlConnection con = new SqlConnection(connectionString);
-            con.Open();
-            SqlCommand cmd = con.CreateCommand();
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = pro;
+            MST_DAL mST_DAL = new MST_DAL();
+            DataTable dt = new DataTable();
             if (pro == "MST_StudentFilterBranch")
             {
-                cmd.Parameters.AddWithValue("@BranchID", BranchID);
+                dt = mST_DAL.SetStudentFilterBranch(BranchID);
             }
             else if (pro == "MST_StudentFilterCity")
             {
-                cmd.Parameters.AddWithValue("@CityID", CityID);
+                dt = mST_DAL.SetStudentFilterCity(CityID);
             }
             else
             {
-                cmd.Parameters.AddWithValue("@BranchID", BranchID);
-                cmd.Parameters.AddWithValue("@CityID", CityID);
+                dt = mST_DAL.SetStudentFilterAll(BranchID, CityID);
             }
-            DataTable dt = new DataTable();
-            SqlDataReader dr = cmd.ExecuteReader();
-            dt.Load(dr);
-            con.Close();
             List<MST_StudentModel> studentModelList = new List<MST_StudentModel>();
             if (dt.Rows.Count == 0)
             {
@@ -232,8 +227,6 @@ namespace Student_Master_Areas.Areas.MST_Student.Controllers
         #region #StudentFilter
         public IActionResult MST_StudentFilter(int BranchID, int CityID)
         {
-            Console.WriteLine(BranchID);
-            Console.WriteLine(CityID);
             if (BranchID == 0 && CityID == 0)
             {
                 return RedirectToAction("MST_StudentList");

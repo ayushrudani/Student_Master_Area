@@ -165,7 +165,7 @@ namespace Student_Master_Areas.DAL
                 sqlDB.AddInParameter(dbCMD, "Email", SqlDbType.VarChar, studentModel.Email.Trim());
                 sqlDB.AddInParameter(dbCMD, "MobileNoFather", SqlDbType.VarChar, studentModel.MobileNoFather.Trim());
                 sqlDB.AddInParameter(dbCMD, "Address", SqlDbType.VarChar, studentModel.Address.Trim());
-                sqlDB.AddInParameter(dbCMD, "BirthDate", SqlDbType.Date, studentModel.BirthDate);
+                sqlDB.AddInParameter(dbCMD, "BirthDate", SqlDbType.DateTime, studentModel.BirthDate);
                 if (studentModel.IsActive == "Yes")
                 {
                     sqlDB.AddInParameter(dbCMD, "IsActive", SqlDbType.Bit, 1);
@@ -174,7 +174,7 @@ namespace Student_Master_Areas.DAL
                 {
                     sqlDB.AddInParameter(dbCMD, "IsActive", SqlDbType.Bit, 0);
                 }
-                sqlDB.AddInParameter(dbCMD, "Gender", SqlDbType.Date, studentModel.Gender);
+                sqlDB.AddInParameter(dbCMD, "Gender", SqlDbType.VarChar, studentModel.Gender);
                 sqlDB.AddInParameter(dbCMD, "Password", SqlDbType.VarChar, studentModel.Password.Trim());
                 sqlDB.ExecuteNonQuery(dbCMD);
                 return "Record Inserted Successfully";
@@ -201,7 +201,7 @@ namespace Student_Master_Areas.DAL
                 sqlDB.AddInParameter(dbCMD, "Email", SqlDbType.VarChar, studentModel.Email.Trim());
                 sqlDB.AddInParameter(dbCMD, "MobileNoFather", SqlDbType.VarChar, studentModel.MobileNoFather.Trim());
                 sqlDB.AddInParameter(dbCMD, "Address", SqlDbType.VarChar, studentModel.Address.Trim());
-                sqlDB.AddInParameter(dbCMD, "BirthDate", SqlDbType.Date, studentModel.BirthDate);
+                sqlDB.AddInParameter(dbCMD, "BirthDate", SqlDbType.DateTime, studentModel.BirthDate);
                 if (studentModel.IsActive == "Yes")
                 {
                     sqlDB.AddInParameter(dbCMD, "IsActive", SqlDbType.Bit, 1);
@@ -210,12 +210,13 @@ namespace Student_Master_Areas.DAL
                 {
                     sqlDB.AddInParameter(dbCMD, "IsActive", SqlDbType.Bit, 0);
                 }
-                sqlDB.AddInParameter(dbCMD, "Gender", SqlDbType.Date, studentModel.Gender);
+                sqlDB.AddInParameter(dbCMD, "Gender", SqlDbType.VarChar, studentModel.Gender);
                 sqlDB.ExecuteNonQuery(dbCMD);
                 return "Record Updated Successfully";
             }
             catch (Exception ex) { return ex.Message; }
-        }
+
+}
         #endregion
 
         #region MST_Student_Delete

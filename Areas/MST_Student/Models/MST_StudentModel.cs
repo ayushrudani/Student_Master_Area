@@ -34,7 +34,7 @@ namespace Student_Master_Areas.Areas.MST_Student.Models
         public string Address { get; set; }
         [Required(ErrorMessage = "Please Enter BirthDate")]
 
-        public string BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public int Age { get; set; }
         [Required(ErrorMessage = "Please Enter IsActive")]

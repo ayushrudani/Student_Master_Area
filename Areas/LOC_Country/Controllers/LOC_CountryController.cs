@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Student_Master_Areas.Areas.LOC_Country.Models;
+using Student_Master_Areas.BAL;
 using Student_Master_Areas.DAL;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace Student_Master_Areas.Areas.LOC_Country.Controllers
 {
+    [CheckAccess]
+    [CheckAdmin]
     [Area("LOC_Country")]
     [Route("LOC_Country/{controller}/{action}")]
     public class LOC_CountryController : Controller
