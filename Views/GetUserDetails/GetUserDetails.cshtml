@@ -1,0 +1,4 @@
+﻿@using System.Data;
+@foreach(DataRow dr in Model.Rows){
+    <h1>@dr["StudentName"]</h1>
+}

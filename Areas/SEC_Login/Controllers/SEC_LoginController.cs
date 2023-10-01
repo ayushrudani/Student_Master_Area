@@ -31,6 +31,7 @@ namespace Student_Master_Areas.Areas.SEC_Login.Controllers
                     HttpContext.Session.SetString("UserID", dr["UserID"].ToString());
                     HttpContext.Session.SetString("Password", dr["Password"].ToString());
                     HttpContext.Session.SetString("ImageURL", dr["ImageURL"].ToString());
+                    HttpContext.Session.SetString("StudentID", dr["StudentID"].ToString());
                     HttpContext.Session.SetString("Is_Admin", dr["Is_Admin"].ToString());
                     break;
                 }
@@ -63,6 +64,5 @@ namespace Student_Master_Areas.Areas.SEC_Login.Controllers
             return RedirectToAction("SEC_Login", "SEC_Login");
         } 
         #endregion
-
     }
 }

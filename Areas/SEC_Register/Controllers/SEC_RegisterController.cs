@@ -31,12 +31,10 @@ namespace Student_Master_Areas.Areas.SEC_Register.Controllers
                     using (FileStream stream = new FileStream(path, FileMode.Create))
                     {
                         sEC_RegisterModel.File.CopyTo(stream);
-                        Console.WriteLine("Image Done");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("IMage Not DOne");
                 }
                 sEC_RegisterModel.ImageURL = random.ToString() + "." + sEC_RegisterModel.File.ContentType.Split('/')[1];
                 SEC_DAL sEC_DAL = new SEC_DAL();
@@ -45,18 +43,15 @@ namespace Student_Master_Areas.Areas.SEC_Register.Controllers
                 return RedirectToAction("SEC_Login", "SEC_Login", new { area = "SEC_Login" });
                 // Process other form data
                 // model.UserName
-
                 // Redirect or return a response
             }
             else
             {
                 return View("SEC_Register");
             }
-            
             //Console.WriteLine(sEC_RegisterModel.File.FileName.ToString());
             //Console.WriteLine(sEC_RegisterModel.File.Name);
             //Console.WriteLine(sEC_RegisterModel.File.ContentType);
-            
         }
     }
 }

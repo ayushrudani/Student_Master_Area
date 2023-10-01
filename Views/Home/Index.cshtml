@@ -1,7 +1,10 @@
-﻿@{
+﻿@using Student_Master_Areas.BAL;
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>
-    <a asp-action="SEC_Login" asp-area="SEC_Login" asp-controller="SEC_Login">HEllo</a>
+    <h1>@CV.UserName()</h1>
+    <a asp-controller="GetUserDetails" asp-action="GetUserDetails" asp-route-id="@Convert.ToInt32(@CV.StudentID())">User Details</a>
+    <a asp-action="Logout" asp-area="SEC_Login" asp-controller="SEC_Login">Logout</a>
 </h1>

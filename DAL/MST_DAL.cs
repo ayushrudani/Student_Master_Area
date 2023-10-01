@@ -56,7 +56,7 @@ namespace Student_Master_Areas.DAL
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("MST_StudentFilterCity");
-                sqlDB.AddInParameter(dbCMD, "BranchID", SqlDbType.Int, CityID);
+                sqlDB.AddInParameter(dbCMD, "@CityID", SqlDbType.Int, CityID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {

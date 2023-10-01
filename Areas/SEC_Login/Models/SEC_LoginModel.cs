@@ -16,6 +16,8 @@ namespace Student_Master_Areas.Areas.SEC_Login.Models
 
         public string ImageURL { get; set; }
 
+        public int StudentID { get; set; }
+
         public int is_Admin  { get; set; }
     }
 }

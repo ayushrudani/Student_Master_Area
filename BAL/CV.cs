@@ -30,6 +30,15 @@ namespace Student_Master_Areas.BAL
             }
             return UserID;
         }
+        public static int? StudentID()
+        {
+            int? StudentID = null;
+            if (_httpContextAccessor.HttpContext.Session.GetString("StudentID") != null)
+            {
+                StudentID = Convert.ToInt32(_httpContextAccessor.HttpContext.Session.GetString("StudentID"));
+            }
+            return StudentID;
+        }
 
         public static string? ImageURL()
         {

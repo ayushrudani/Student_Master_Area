@@ -15,6 +15,24 @@ namespace Student_Master_Areas.BAL
             }
         }
 
+            public override void OnResultExecuting(ResultExecutingContext filterContext)
+            {
+                filterContext.HttpContext.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+                filterContext.HttpContext.Response.Headers["Expires"] = "-1";
+                filterContext.HttpContext.Response.Headers["Pragma"] = "no-cache";
+                base.OnResultExecuting(filterContext);
+            }
+    }
+    public class CheckAdmin : ActionFilterAttribute, IAuthorizationFilter
+    {
+        public void OnAuthorization(AuthorizationFilterContext filterContext)
+        {
+            if (filterContext.HttpContext.Session.GetString("Is_Admin") == "False")
+            {
+                filterContext.Result = new RedirectResult("~/Home/Error");
+            }
+        }
+
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
             filterContext.HttpContext.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
@@ -23,11 +41,12 @@ namespace Student_Master_Areas.BAL
             base.OnResultExecuting(filterContext);
         }
     }
-    public class CheckAdmin : ActionFilterAttribute, IAuthorizationFilter
+
+    public class CheckUser : ActionFilterAttribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext filterContext)
         {
-            if (filterContext.HttpContext.Session.GetString("Is_Admin") == "False")
+            if (filterContext.HttpContext.Session.GetString("StudentID") != @CV.StudentID().ToString())
             {
                 filterContext.Result = new RedirectResult("~/Home/Error");
             }
